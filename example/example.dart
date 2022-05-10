@@ -43,6 +43,8 @@ class _MyHomePageState extends State<MyHomePage> {
         // Countdown duration in Seconds.
         duration: _duration,
 
+        offset: 0,
+
         // Countdown initial elapsed Duration in Seconds.
         initialDuration: 0,
 
@@ -86,15 +88,6 @@ class _MyHomePageState extends State<MyHomePage> {
           fontWeight: FontWeight.bold,
         ),
 
-        // Format for the Countdown Text.
-        textFormat: CountdownTextFormat.S,
-
-        // Handles Countdown Timer (true for Reverse Countdown (max to 0), false for Forward Countdown (0 to max)).
-        isReverse: false,
-
-        // Handles Animation Direction (true for Reverse Animation, false for Forward Animation).
-        isReverseAnimation: false,
-
         // Handles visibility of the Countdown Text.
         isTimerTextShown: true,
 
@@ -123,17 +116,6 @@ class _MyHomePageState extends State<MyHomePage> {
           const SizedBox(
             width: 10,
           ),
-          _button(title: "Pause", onPressed: () => _controller.pause()),
-          const SizedBox(
-            width: 10,
-          ),
-          _button(title: "Resume", onPressed: () => _controller.resume()),
-          const SizedBox(
-            width: 10,
-          ),
-          _button(
-              title: "Restart",
-              onPressed: () => _controller.restart(duration: _duration))
         ],
       ),
     );
