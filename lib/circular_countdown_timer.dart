@@ -252,6 +252,7 @@ class CircularCountDownTimerState extends State<CircularCountDownTimer>
                       child: CustomPaint(
                         painter: CustomTimerPainter(
                             animation: _countDownAnimation ?? _controller,
+                            seconds: widget.duration,
                             fillColor: widget.fillColor,
                             fillGradient: widget.fillGradient,
                             ringColor: widget.ringColor,

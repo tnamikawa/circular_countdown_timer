@@ -4,6 +4,7 @@ import 'dart:math' as math;
 class CustomTimerPainter extends CustomPainter {
   CustomTimerPainter(
       {this.animation,
+      required this.seconds,
       this.fillColor,
       this.fillGradient,
       this.ringColor,
@@ -15,6 +16,7 @@ class CustomTimerPainter extends CustomPainter {
       : super(repaint: animation);
 
   final Animation<double>? animation;
+  final int seconds;
   final Color? fillColor, ringColor, backgroundColor;
   final double? strokeWidth;
   final StrokeCap? strokeCap;
@@ -37,7 +39,8 @@ class CustomTimerPainter extends CustomPainter {
     }
 
     canvas.drawCircle(size.center(Offset.zero), size.width / 2, paint);
-    double progress = (animation!.value) * 2 * math.pi;
+    const max = 2 * math.pi;
+    double progress = ((animation!.value) * seconds * max) % max;
 
     if (fillGradient != null) {
       final rect = Rect.fromCircle(
