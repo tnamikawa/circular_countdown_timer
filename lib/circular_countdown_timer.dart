@@ -115,7 +115,7 @@ class CircularCountDownTimerState extends State<CircularCountDownTimer>
       } else if (widget.textFormat == CountdownTextFormat.S) {
         return "0";
       } else {
-        return "00:00:00";
+        return "GO!";
       }
     } else {
       Duration duration = _controller!.duration! * _controller!.value;
