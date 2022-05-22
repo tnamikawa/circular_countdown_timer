@@ -71,12 +71,15 @@ class CircularCountDownTimer extends StatefulWidget {
   /// Handles the timer start.
   final bool autoStart;
 
+  final String chapterTitle;
+
   CircularCountDownTimer(
       {required this.width,
       required this.height,
       required this.duration,
       required this.fillColor,
       required this.ringColor,
+      required this.chapterTitle,
       this.backgroundColor,
       this.fillGradient,
       this.ringGradient,
@@ -246,42 +249,53 @@ class CircularCountDownTimerState extends State<CircularCountDownTimer>
       child: AnimatedBuilder(
           animation: _controller!,
           builder: (context, child) {
-            return Align(
-              child: AspectRatio(
-                aspectRatio: 1.0,
-                child: Stack(
-                  children: <Widget>[
-                    Positioned.fill(
-                      child: CustomPaint(
-                        painter: CustomTimerPainter(
-                            animation: _countDownAnimation ?? _controller,
-                            seconds: widget.duration,
-                            fillColor: widget.fillColor,
-                            fillGradient: widget.fillGradient,
-                            ringColor: widget.ringColor,
-                            ringGradient: widget.ringGradient,
-                            strokeWidth: widget.strokeWidth,
-                            strokeCap: widget.strokeCap,
-                            backgroundColor: widget.backgroundColor,
-                            backgroundGradient: widget.backgroundGradient),
-                      ),
+            return Column(
+              children: [
+                Align(
+                  child: AspectRatio(
+                    aspectRatio: 1.0,
+                    child: Stack(
+                      children: <Widget>[
+                        Positioned.fill(
+                          child: CustomPaint(
+                            painter: CustomTimerPainter(
+                                animation: _countDownAnimation ?? _controller,
+                                seconds: widget.duration,
+                                fillColor: widget.fillColor,
+                                fillGradient: widget.fillGradient,
+                                ringColor: widget.ringColor,
+                                ringGradient: widget.ringGradient,
+                                strokeWidth: widget.strokeWidth,
+                                strokeCap: widget.strokeCap,
+                                backgroundColor: widget.backgroundColor,
+                                backgroundGradient: widget.backgroundGradient),
+                          ),
+                        ),
+                        widget.isTimerTextShown
+                            ? Align(
+                          alignment: FractionalOffset.center,
+                          child: Text(
+                            time,
+                            style: widget.textStyle ??
+                                TextStyle(
+                                  fontSize: 16.0,
+                                  color: Colors.black,
+                                ),
+                          ),
+                        )
+                            : Container(),
+                      ],
                     ),
-                    widget.isTimerTextShown
-                        ? Align(
-                            alignment: FractionalOffset.center,
-                            child: Text(
-                              time,
-                              style: widget.textStyle ??
-                                  TextStyle(
-                                    fontSize: 16.0,
-                                    color: Colors.black,
-                                  ),
-                            ),
-                          )
-                        : Container(),
-                  ],
+                  ),
                 ),
-              ),
+
+                Padding(padding: EdgeInsets.all(10)),
+                Text(widget.chapterTitle,
+                  style: TextStyle(
+                    color: widget.ringColor,
+                  ),
+                ),
+              ],
             );
           }),
     );

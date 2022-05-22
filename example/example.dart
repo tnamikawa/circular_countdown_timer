@@ -56,19 +56,21 @@ class _MyHomePageState extends State<MyHomePage> {
         height: MediaQuery.of(context).size.height / 2,
 
         // Ring Color for Countdown Widget.
-        ringColor: Colors.grey[300]!,
+        ringColor: Colors.blue,
 
         // Ring Gradient for Countdown Widget.
         ringGradient: null,
 
         // Filling Color for Countdown Widget.
-        fillColor: Colors.purpleAccent[100]!,
+        fillColor: Colors.transparent,
 
         // Filling Gradient for Countdown Widget.
         fillGradient: null,
 
+        chapterTitle: "サンプル",
+
         // Background Color for Countdown Widget.
-        backgroundColor: Colors.purple[500],
+        backgroundColor: Colors.transparent,
 
         // Background Gradient for Countdown Widget.
         backgroundGradient: null,
@@ -82,7 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
         // Text Style for Countdown Text.
         textStyle: const TextStyle(
           fontSize: 33.0,
-          color: Colors.white,
+          color: Colors.blue,
           fontWeight: FontWeight.bold,
         ),
 
