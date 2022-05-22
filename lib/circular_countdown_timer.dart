@@ -244,50 +244,71 @@ class CircularCountDownTimerState extends State<CircularCountDownTimer>
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: widget.width,
-      height: widget.height,
-      child: AnimatedBuilder(
-          animation: _controller!,
-          builder: (context, child) {
-            return Align(
-              child: AspectRatio(
-                aspectRatio: 1.0,
-                child: Stack(
-                  children: <Widget>[
-                    Positioned.fill(
-                      child: CustomPaint(
-                        painter: CustomTimerPainter(
-                            animation: _countDownAnimation ?? _controller,
-                            seconds: widget.duration,
-                            fillColor: widget.fillColor,
-                            fillGradient: widget.fillGradient,
-                            ringColor: widget.ringColor,
-                            ringGradient: widget.ringGradient,
-                            strokeWidth: widget.strokeWidth,
-                            strokeCap: widget.strokeCap,
-                            backgroundColor: widget.backgroundColor,
-                            backgroundGradient: widget.backgroundGradient),
-                      ),
-                    ),
-                    widget.isTimerTextShown
-                        ? Align(
-                            alignment: FractionalOffset.center,
-                            child: Text(
-                              time,
-                              style: widget.textStyle ??
-                                  TextStyle(
-                                    fontSize: 16.0,
-                                    color: Colors.black,
-                                  ),
-                            ),
-                          )
-                        : Container(),
-                  ],
+        width: widget.width,
+        height: widget.height,
+        child: Stack(
+          children: [
+            Align(
+              alignment: Alignment.topCenter,
+              child: Container(
+                width: widget.width,
+                height: widget.height - 80,
+                child: AnimatedBuilder(
+                    animation: _controller!,
+                    builder: (context, child) {
+                      return Align(
+                        child: AspectRatio(
+                          aspectRatio: 1.0,
+                          child: Stack(
+                            children: <Widget>[
+                              Positioned.fill(
+                                child: CustomPaint(
+                                  painter: CustomTimerPainter(
+                                      animation:
+                                          _countDownAnimation ?? _controller,
+                                      seconds: widget.duration,
+                                      fillColor: widget.fillColor,
+                                      fillGradient: widget.fillGradient,
+                                      ringColor: widget.ringColor,
+                                      ringGradient: widget.ringGradient,
+                                      strokeWidth: widget.strokeWidth,
+                                      strokeCap: widget.strokeCap,
+                                      backgroundColor: widget.backgroundColor,
+                                      backgroundGradient:
+                                          widget.backgroundGradient),
+                                ),
+                              ),
+                              widget.isTimerTextShown
+                                  ? Align(
+                                      alignment: FractionalOffset.center,
+                                      child: Text(
+                                        time,
+                                        style: widget.textStyle ??
+                                            TextStyle(
+                                              fontSize: 16.0,
+                                              color: Colors.black,
+                                            ),
+                                      ),
+                                    )
+                                  : Container(),
+                            ],
+                          ),
+                        ),
+                      );
+                    }),
+              ),
+            ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Text(
+                widget.chapterTitle,
+                style: TextStyle(
+                  color: widget.ringColor,
                 ),
               ),
-            );
-          }),
-    );
+            )
+          ],
+        ));
   }
 
   @override
