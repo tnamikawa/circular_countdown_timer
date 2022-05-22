@@ -73,31 +73,31 @@ class CircularCountDownTimer extends StatefulWidget {
 
   final String chapterTitle;
 
-  CircularCountDownTimer(
-      {required this.width,
-      required this.height,
-      required this.duration,
-      required this.fillColor,
-      required this.ringColor,
-      required this.chapterTitle,
-      this.backgroundColor,
-      this.fillGradient,
-      this.ringGradient,
-      this.backgroundGradient,
-      this.initialDuration = 0,
-      this.isReverse = false,
-      this.isReverseAnimation = false,
-      this.onComplete,
-      this.onStart,
-      this.strokeWidth = 5.0,
-      this.strokeCap = StrokeCap.butt,
-      this.textStyle,
-      this.key,
-      this.isTimerTextShown = true,
-      this.autoStart = true,
-      this.textFormat,
-      this.controller})
-      : assert(initialDuration <= duration),
+  CircularCountDownTimer({
+    required this.width,
+    required this.height,
+    required this.duration,
+    required this.fillColor,
+    required this.ringColor,
+    this.backgroundColor,
+    this.fillGradient,
+    this.ringGradient,
+    this.backgroundGradient,
+    this.initialDuration = 0,
+    this.isReverse = false,
+    this.isReverseAnimation = false,
+    this.onComplete,
+    this.onStart,
+    this.strokeWidth = 5.0,
+    this.strokeCap = StrokeCap.butt,
+    this.textStyle,
+    this.key,
+    this.isTimerTextShown = true,
+    this.autoStart = true,
+    this.textFormat,
+    this.controller,
+    this.chapterTitle = "",
+  })  : assert(initialDuration <= duration),
         super(key: key);
 
   @override
@@ -244,55 +244,50 @@ class CircularCountDownTimerState extends State<CircularCountDownTimer>
   @override
   Widget build(BuildContext context) {
     return Container(
-        width: widget.width,
-        height: widget.height,
-        child: Stack(children: [
-          Padding(
-            padding: EdgeInsets.fromLTRB(0, 0, 0, 80),
-            child: AnimatedBuilder(
-                animation: _controller!,
-                builder: (context, child) {
-                  return Align(
-                    child: AspectRatio(
-                      aspectRatio: 1.0,
-                      child: Stack(
-                        children: <Widget>[
-                          Positioned.fill(
-                            child: CustomPaint(
-                              painter: CustomTimerPainter(
-                                  animation: _countDownAnimation ?? _controller,
-                                  seconds: widget.duration,
-                                  fillColor: widget.fillColor,
-                                  fillGradient: widget.fillGradient,
-                                  ringColor: widget.ringColor,
-                                  ringGradient: widget.ringGradient,
-                                  strokeWidth: widget.strokeWidth,
-                                  strokeCap: widget.strokeCap,
-                                  backgroundColor: widget.backgroundColor,
-                                  backgroundGradient:
-                                      widget.backgroundGradient),
-                            ),
-                          ),
-                          widget.isTimerTextShown
-                              ? Align(
-                                  alignment: FractionalOffset.center,
-                                  child: Text(
-                                    time,
-                                    style: widget.textStyle ??
-                                        TextStyle(
-                                          fontSize: 16.0,
-                                          color: Colors.black,
-                                        ),
-                                  ),
-                                )
-                              : Container(),
-                        ],
+      width: widget.width,
+      height: widget.height,
+      child: AnimatedBuilder(
+          animation: _controller!,
+          builder: (context, child) {
+            return Align(
+              child: AspectRatio(
+                aspectRatio: 1.0,
+                child: Stack(
+                  children: <Widget>[
+                    Positioned.fill(
+                      child: CustomPaint(
+                        painter: CustomTimerPainter(
+                            animation: _countDownAnimation ?? _controller,
+                            seconds: widget.duration,
+                            fillColor: widget.fillColor,
+                            fillGradient: widget.fillGradient,
+                            ringColor: widget.ringColor,
+                            ringGradient: widget.ringGradient,
+                            strokeWidth: widget.strokeWidth,
+                            strokeCap: widget.strokeCap,
+                            backgroundColor: widget.backgroundColor,
+                            backgroundGradient: widget.backgroundGradient),
                       ),
                     ),
-                  );
-                }),
-          )
-        ]));
+                    widget.isTimerTextShown
+                        ? Align(
+                            alignment: FractionalOffset.center,
+                            child: Text(
+                              time,
+                              style: widget.textStyle ??
+                                  TextStyle(
+                                    fontSize: 16.0,
+                                    color: Colors.black,
+                                  ),
+                            ),
+                          )
+                        : Container(),
+                  ],
+                ),
+              ),
+            );
+          }),
+    );
   }
 
   @override
