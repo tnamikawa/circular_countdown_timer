@@ -186,7 +186,10 @@ class CircularCountDownTimerState extends State<CircularCountDownTimer>
     } else if (duration.inMinutes != 0) {
       return '${(duration.inMinutes % 60).toString().padLeft(2, '0')}:${(duration.inSeconds % 60).toString().padLeft(2, '0')}';
     } else {
-      return '${duration.inSeconds % 60 + 1}';
+      if (duration.inSeconds == 0) {
+        return 'GO!';
+      }
+      return '${duration.inSeconds % 60}';
     }
   }
 
