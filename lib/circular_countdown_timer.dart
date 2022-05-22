@@ -244,18 +244,17 @@ class CircularCountDownTimerState extends State<CircularCountDownTimer>
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: widget.width,
-      height: widget.height,
-      child: AnimatedBuilder(
-          animation: _controller!,
-          builder: (context, child) {
-            return Align(
-              child: AspectRatio(
-                aspectRatio: 1.0,
-                child: Stack(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(0, 0, 0, 80),
+        width: widget.width,
+        height: widget.height,
+        child: Stack(children: [
+          Padding(
+            padding: EdgeInsets.fromLTRB(0, 0, 0, 80),
+            child: AnimatedBuilder(
+                animation: _controller!,
+                builder: (context, child) {
+                  return Align(
+                    child: AspectRatio(
+                      aspectRatio: 1.0,
                       child: Stack(
                         children: <Widget>[
                           Positioned.fill(
@@ -270,41 +269,30 @@ class CircularCountDownTimerState extends State<CircularCountDownTimer>
                                   strokeWidth: widget.strokeWidth,
                                   strokeCap: widget.strokeCap,
                                   backgroundColor: widget.backgroundColor,
-                                  backgroundGradient: widget.backgroundGradient),
+                                  backgroundGradient:
+                                      widget.backgroundGradient),
                             ),
                           ),
                           widget.isTimerTextShown
                               ? Align(
-                            alignment: FractionalOffset.center,
-                            child: Text(
-                              time,
-                              style: widget.textStyle ??
-                                  TextStyle(
-                                    fontSize: 16.0,
-                                    color: Colors.black,
+                                  alignment: FractionalOffset.center,
+                                  child: Text(
+                                    time,
+                                    style: widget.textStyle ??
+                                        TextStyle(
+                                          fontSize: 16.0,
+                                          color: Colors.black,
+                                        ),
                                   ),
-                            ),
-                          )
+                                )
                               : Container(),
                         ],
                       ),
                     ),
-                    Align(
-                      alignment: Alignment.bottomCenter,
-                      child: Text(
-                        widget.chapterTitle,
-                        style: TextStyle(
-                          color: widget.ringColor,
-                        ),
-                      ),
-                    ),
-                  ],
-                )
-                ,
-              ),
-            );
-          }),
-    );
+                  );
+                }),
+          )
+        ]));
   }
 
   @override
