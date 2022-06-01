@@ -71,8 +71,6 @@ class CircularCountDownTimer extends StatefulWidget {
   /// Handles the timer start.
   final bool autoStart;
 
-  final String chapterTitle;
-
   CircularCountDownTimer({
     required this.width,
     required this.height,
@@ -96,7 +94,6 @@ class CircularCountDownTimer extends StatefulWidget {
     this.autoStart = true,
     this.textFormat,
     this.controller,
-    this.chapterTitle = "",
   })  : assert(initialDuration <= duration),
         super(key: key);
 

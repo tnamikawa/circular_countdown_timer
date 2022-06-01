@@ -67,8 +67,6 @@ class _MyHomePageState extends State<MyHomePage> {
         // Filling Gradient for Countdown Widget.
         fillGradient: null,
 
-        chapterTitle: "サンプル",
-
         // Background Color for Countdown Widget.
         backgroundColor: Colors.transparent,
 
