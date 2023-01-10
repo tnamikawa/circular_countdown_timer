@@ -29,7 +29,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final int _duration = 10;
+  final int _duration = 3;
   final CountDownController _controller = CountDownController();
 
   @override
@@ -90,7 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
         textFormat: CountdownTextFormat.S,
 
         // Handles Countdown Timer (true for Reverse Countdown (max to 0), false for Forward Countdown (0 to max)).
-        isReverse: false,
+        isReverse: true,
 
         // Handles Animation Direction (true for Reverse Animation, false for Forward Animation).
         isReverseAnimation: false,
