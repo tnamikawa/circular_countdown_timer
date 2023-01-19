@@ -187,6 +187,9 @@ class CircularCountDownTimerState extends State<CircularCountDownTimer>
       return '${(duration.inMinutes % 60).toString().padLeft(2, '0')}:${(duration.inSeconds % 60).toString().padLeft(2, '0')}';
     } else {
       var sec = duration.inSeconds + 1;
+      if (widget.duration < sec) {
+        sec = widget.duration;
+      }
       if (sec == 0) {
         return 'GO!';
       }
