@@ -5,7 +5,7 @@ homepage: https://github.com/MuhammadUsamaSiddiqui/circular_countdown_timer
 
 environment:
   sdk: ">=3.0.6 <4.0.0"
-  flutter: ^3.10.6
+  flutter: ^3.16.4
   
 dependencies:
   flutter:
